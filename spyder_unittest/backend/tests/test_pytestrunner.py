@@ -58,12 +58,12 @@ def test_pytestrunner_start(monkeypatch):
 
     runner = PyTestRunner(None, 'results')
     config = Config()
-    runner.start(config, ['pythondir'])
+    runner.start(config, 'python', ['pythondir'])
     assert runner.config is config
     assert runner.reader is mock_reader
     runner.reader.sig_received.connect.assert_called_once_with(
         runner.process_output)
-    MockRunnerBase.start.assert_called_once_with(runner, config, ['pythondir'])
+    MockRunnerBase.start.assert_called_once_with(runner, config, 'python', ['pythondir'])
 
 
 def test_pytestrunner_process_output_with_collected(qtbot):
